@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <script>
+        // Prefill form with URL parameters
+        function prefillForm() {
+            const urlParams = new URLSearchParams(window.location.search);
+            document.getElementById("first_name").value = urlParams.get('first_name') || '';
+            document.getElementById("last_name").value = urlParams.get('last_name') || '';
+        }
+
+        window.onload = prefillForm;
+    </script>
+</head>
+<body>
+    <h1>Survey Form</h1>
+    <form>
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required><br><br>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required><br><br>
+
+        <label for="feedback">How would you rate our service?</label>
+        <select id="feedback" name="feedback">
+            <option value="excellent">Excellent</option>
+            <option value="good">Good</option>
+            <option value="average">Average</option>
+            <option value="poor">Poor</option>
+        </select><br><br>
+
+        <button type="button" onclick="alert('Thank you for your feedback!')">Submit</button>
+    </form>
+</body>
+</html>
