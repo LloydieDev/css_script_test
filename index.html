@@ -1,38 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Survey Form</title>
-    <script>
-        // Prefill form with URL parameters
-        function prefillForm() {
-            const urlParams = new URLSearchParams(window.location.search);
-            document.getElementById("first_name").value = urlParams.get('first_name') || '';
-            document.getElementById("last_name").value = urlParams.get('last_name') || '';
-        }
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <!--Introduction -->
+    <h2>Introduction</h2>
+    <p id="introParagraph">
+      Hi [firstname] [lastname], this is [agent] from Lower Bills USA, calling
+      on a recorded line. I’m calling...
+    </p>
 
-        window.onload = prefillForm;
-    </script>
-</head>
-<body>
-    <h1>Survey Form</h1>
-    <form>
-        <label for="first_name">First Name:</label>
-        <input type="text" id="first_name" name="first_name" required><br><br>
+    <h3>Survey Form</h3>
+    <form
+      action="https://display.ringba.com/enrich/2127649308487452044"
+      method="get"
+    >
+      <!-- Input fields for all parameters -->
+      <input type="hidden" id="callerid" name="callerid" />
+      <input type="hidden" id="firstname" name="firstname" />
+      <input type="hidden" id="lastname" name="lastname" />
+      <input type="hidden" id="state" name="state" />
+      <input type="hidden" id="trusted" name="trusted" />
+      <input type="hidden" id="dob" name="dob" />
+      <input type="hidden" id="gender" name="gender" />
+      <input type="hidden" id="ip" name="ip" />
+      <input type="hidden" id="zip" name="zip" />
+      <input type="hidden" id="leadId" name="Lead_ID" />
+      <input type="hidden" id="age" name="age" />
+      <input type="hidden" id="sourcename" name="sourcename" />
+      <input type="hidden" id="city" name="city" />
+      <input type="hidden" id="address" name="address" />
+      <input type="hidden" id="agent" name="agent" />
+      <input type="hidden" id="vendorleadcode" name="vendorleadcode" />
+      <input type="hidden" id="entrydate" name="entrydate" />
+      <input type="hidden" id="jornaya" name="jornaya" />
+      <input type="hidden" id="incident_date" name="incident_date" />
+      <input type="hidden" id="source_url" name="source_url" />
+      <input type="hidden" id="injury_type" name="injury_type" />
+      <input type="hidden" id="email" name="email" />
+      <input type="hidden" id="agentname" name="agentname" />
 
-        <label for="last_name">Last Name:</label>
-        <input type="text" id="last_name" name="last_name" required><br><br>
+      <label for="feedback">How would you rate our service?</label>
+      <select id="feedback" name="feedback">
+        <option value="excellent">Excellent</option>
+        <option value="good">Good</option>
+        <option value="average">Average</option>
+        <option value="poor">Poor</option></select
+      ><br /><br />
 
-        <label for="feedback">How would you rate our service?</label>
-        <select id="feedback" name="feedback">
-            <option value="excellent">Excellent</option>
-            <option value="good">Good</option>
-            <option value="average">Average</option>
-            <option value="poor">Poor</option>
-        </select><br><br>
-
-        <button type="button" onclick="alert('Thank you for your feedback!')">Submit</button>
+      <button type="submit">Submit</button>
     </form>
-</body>
+  </body>
 </html>
