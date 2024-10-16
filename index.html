@@ -8,21 +8,18 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="container"> <!-- Added container div -->
-        <!-- Introduction -->
-        <h2>Introduction</h2>
-        <p id="introParagraph">
-            Hi [firstname] [lastname], this is [agent] from Lower Bills USA, calling
-            on a recorded line. I’m calling...
-        </p>
-
+    <div class="container">
+        <h2>Agent Introduction</h2>
+        <p id="introParagraph"></p>
+        <p>How is your day going so far? (wait for the Answer)</p>
         <p>
-            because you submitted your information for help with your debt. Our
-            programs can help you
+            I’m calling because you requested help with your finances on one of our
+            websites. Let’s get you prequalified and connect you with an advisor to
+            see if they can help lower your debt by 30-50%.
         </p>
         <p>
-            reduce your debt by 30-50% and lower your monthly payments! Let’s see if
-            you qualify!
+            I just need to ask a few quick questions to see if you’re a fit for our
+            program.
         </p>
 
         <h3>Survey Form</h3>
@@ -52,13 +49,42 @@
             <input type="hidden" id="email" name="email" />
             <input type="hidden" id="agentname" name="agentname" />
 
-            <label for="feedback">How would you rate our service?</label>
-            <select id="feedback" name="feedback">
-                <option value="excellent">Excellent</option>
-                <option value="good">Good</option>
-                <option value="average">Average</option>
-                <option value="poor">Poor</option>
-            </select><br /><br />
+            <!--Question 1-->
+            <h4>Q1: Credit Loan</h4>
+            <label for="Q1">
+                Let's start with credit cards. How much would you say you owe on just credit cards overall?
+                <span class="required">*</span> <span>Input 0 in case has no Credit loan</span>
+            </label>
+            <div class="input-wrapper">
+                <span class="input-prefix">$</span>
+                <input type="text" id="credit_loan" name="credit_loan" placeholder="Enter Credit loan amount" required />
+            </div>
+
+            <!--Question 2-->
+            <h4>Q2: Unsecured Loans</h4>
+            <p id="Q2Paragraph"></p>
+            <p>These are PERSONAL loans owed to a bank, and that are NOT backed by physical property like a CAR or a HOUSE. We also can’t help with student loans or medical bills. Just personal loans through a bank.</p>
+            <label for="Q2">
+                With that considered, how much would you say you owe on personal loans?
+                <span class="required">*</span> <span>Input 0 in case has no personal loan</span>
+            </label>
+            <div class="input-wrapper">
+                <span class="input-prefix">$</span>
+                <input type="text" id="unsecured_loan" name="unsecured_loan" placeholder="Enter unsecured loan amount" required />
+            </div>
+
+            <!-- Question 3 -->
+            <h4>Q3:</h4>
+            <p id="Q3Paragraph">Let's make sure I got that right:</p>
+            <p id="Q3Output"></p>
+
+            <!-- Total Debt amount -->
+            <h4>Total Debt:</h4>
+            <p id="totalDebtOutput">Your TOTAL debt, including your credit card and personal loans is: $0</p>
+
+            <!-- Qualification Message -->
+            <p id="QualifiedMessage" class="qualified-message"></p>
+            <p id="notQualifiedMessage" class="not-qualified-message"></p>
 
             <button type="submit">Submit</button>
         </form>

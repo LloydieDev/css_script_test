@@ -54,8 +54,47 @@ function prefillForm() {
 
     // Update the paragraph with the user's information
     document.getElementById("introParagraph").innerHTML = 
-        `Hi ${firstName} ${lastName}, this is ${agent} from Lower Bills USA, calling on a recorded line. I’m calling...`;
+        `Hello, is this <strong>${firstName}</strong>? Hi <strong>${firstName}</strong> this is <strong>${agentName}</strong> from Financial Relief Center calling on a recorded line.`;
+    // Update the paragraph with the user's information
+    document.getElementById("Q2Paragraph").innerHTML = 
+        `OK <strong>${firstName}</strong>, how about unsecured loans?`;
 }
 
 // Ensure the form is prefilled once the window loads
 window.onload = prefillForm;
+
+// script.js
+
+function updateQ3() {
+    const creditLoan = parseFloat(document.getElementById('credit_loan').value) || 0;
+    const unsecuredLoan = parseFloat(document.getElementById('unsecured_loan').value) || 0;
+    
+    // Update Q3 output
+    document.getElementById('Q3Output').innerHTML = `For credit card debt I have $${creditLoan}, and for Personal Loans I have $${unsecuredLoan}.`;
+  
+    // Calculate total debt
+    const totalDebt = creditLoan + unsecuredLoan;
+  
+    // Display the total debt
+    document.getElementById('totalDebtOutput').innerHTML = `Your TOTAL debt, including your credit card and personal loans is: $${totalDebt.toFixed(2)}`;
+  
+  
+
+    // Qualification logic
+    const QualifiedMessage = document.getElementById('QualifiedMessage');
+    const notQualifiedMessage = document.getElementById('notQualifiedMessage');
+
+  
+    if (totalDebt >= 10000) {
+        QualifiedMessage.innerHTML = "You are now Qualified"; // Clear message
+        notQualifiedMessage.innerHTML = ""; 
+    } else {
+        notQualifiedMessage.innerHTML = "Sorry but you are not qualified due to the total debt being under $10,000."; // Set qualification message
+        QualifiedMessage.innerHTML = ""; 
+    }
+  }
+  
+  // Event listeners for input changes
+  document.getElementById('credit_loan').addEventListener('input', updateQ3);
+  document.getElementById('unsecured_loan').addEventListener('input', updateQ3);
+  
