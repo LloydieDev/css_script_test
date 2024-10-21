@@ -1,93 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Survey Form</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h2>Agent Introduction</h2>
-        <p id="introParagraph"></p>
-        <p>How is your day going so far? (wait for the Answer)</p>
+      <h2>Agent Introduction</h2>
+      <p id="introParagraph"></p>
+      <p>How is your day going so far? (wait for the Answer)</p>
+      <p>
+        I’m calling because you requested help with your finances on one of our
+        websites. Let’s get you prequalified and connect you with an advisor to
+        see if they can help lower your debt by 30-50%.
+      </p>
+      <p>
+        I just need to ask a few quick questions to see if you’re a fit for our
+        program.
+      </p>
+
+      <h3>Survey Form</h3>
+      <form id="callForm">
+        <!-- Input fields for all parameters -->
+        <input type="hidden" id="callerid" name="callerid" />
+        <input type="hidden" id="firstname" name="firstname" />
+        <input type="hidden" id="lastname" name="lastname" />
+        <input type="hidden" id="state" name="state" />
+        <input type="hidden" id="trusted" name="trusted" />
+        <input type="hidden" id="dob" name="dob" />
+        <input type="hidden" id="gender" name="gender" />
+        <input type="hidden" id="ip" name="ip" />
+        <input type="hidden" id="zip" name="zip" />
+        <input type="hidden" id="leadId" name="Lead_ID" />
+        <input type="hidden" id="age" name="age" />
+        <input type="hidden" id="sourcename" name="sourcename" />
+        <input type="hidden" id="city" name="city" />
+        <input type="hidden" id="address" name="address" />
+        <input type="hidden" id="agent" name="agent" />
+        <input type="hidden" id="vendorleadcode" name="vendorleadcode" />
+        <input type="hidden" id="entrydate" name="entrydate" />
+        <input type="hidden" id="jornaya" name="jornaya" />
+        <input type="hidden" id="incident_date" name="incident_date" />
+        <input type="hidden" id="source_url" name="source_url" />
+        <input type="hidden" id="injury_type" name="injury_type" />
+        <input type="hidden" id="email" name="email" />
+        <input type="hidden" id="agentname" name="agentname" />
+
+        <!--Question 1-->
+        <h4>Q1: Credit Loan</h4>
+        <label for="Q1">
+          Let's start with credit cards. How much would you say you owe on just
+          credit cards overall?
+          <span class="required">*</span>
+          <span>Input 0 in case has no Credit loan</span>
+        </label>
+        <div class="input-wrapper">
+          <span class="input-prefix">$</span>
+          <input
+            type="text"
+            id="credit_loan"
+            name="credit_loan"
+            placeholder="Enter Credit loan amount"
+            required
+          />
+        </div> <br>
+        <!--Question 2-->
+        <h4>Q2: Unsecured Loans</h4>
+        <p id="Q2Paragraph"></p>
         <p>
-            I’m calling because you requested help with your finances on one of our
-            websites. Let’s get you prequalified and connect you with an advisor to
-            see if they can help lower your debt by 30-50%.
+          These are PERSONAL loans owed to a bank, and that are NOT backed by
+          physical property like a CAR or a HOUSE. We also can’t help with
+          student loans or medical bills. Just personal loans through a bank.
         </p>
-        <p>
-            I just need to ask a few quick questions to see if you’re a fit for our
-            program.
+        <label for="Q2">
+          With that considered, how much would you say you owe on personal
+          loans?
+          <span class="required">*</span>
+          <span>Input 0 in case has no personal loan</span>
+        </label>
+        <div class="input-wrapper">
+          <span class="input-prefix">$</span>
+          <input
+            type="text"
+            id="unsecured_loan"
+            name="unsecured_loan"
+            placeholder="Enter unsecured loan amount"
+            required
+          />
+        </div> <br>
+
+        <!-- Question 3 -->
+        <h4>Q3:</h4>
+        <p id="Q3Paragraph">Let's make sure I got that right:</p>
+        <p id="Q3Output"></p>
+
+        <!-- Total Debt amount -->
+        <h4>Total Debt:</h4>
+        <p id="totalDebtOutput">
+          Your TOTAL debt, including your credit card and personal loans is: $0
         </p>
 
-        <h3>Survey Form</h3>
-        <form action="https://display.ringba.com/enrich/2461071299087172853" method="get">
-            <!-- Input fields for all parameters -->
-            <input type="hidden" id="callerid" name="callerid" />
-            <input type="hidden" id="firstname" name="firstname" />
-            <input type="hidden" id="lastname" name="lastname" />
-            <input type="hidden" id="state" name="state" />
-            <input type="hidden" id="trusted" name="trusted" />
-            <input type="hidden" id="dob" name="dob" />
-            <input type="hidden" id="gender" name="gender" />
-            <input type="hidden" id="ip" name="ip" />
-            <input type="hidden" id="zip" name="zip" />
-            <input type="hidden" id="leadId" name="Lead_ID" />
-            <input type="hidden" id="age" name="age" />
-            <input type="hidden" id="sourcename" name="sourcename" />
-            <input type="hidden" id="city" name="city" />
-            <input type="hidden" id="address" name="address" />
-            <input type="hidden" id="agent" name="agent" />
-            <input type="hidden" id="vendorleadcode" name="vendorleadcode" />
-            <input type="hidden" id="entrydate" name="entrydate" />
-            <input type="hidden" id="jornaya" name="jornaya" />
-            <input type="hidden" id="incident_date" name="incident_date" />
-            <input type="hidden" id="source_url" name="source_url" />
-            <input type="hidden" id="injury_type" name="injury_type" />
-            <input type="hidden" id="email" name="email" />
-            <input type="hidden" id="agentname" name="agentname" />
+        <!-- Debt Amount Qualification Message -->
+        <p id="QualifiedMessage" class="qualified-message"></p>
+        <p id="notQualifiedMessage" class="not-qualified-message"></p> <br>
 
-            <!--Question 1-->
-            <h4>Q1: Credit Loan</h4>
-            <label for="Q1">
-                Let's start with credit cards. How much would you say you owe on just credit cards overall?
-                <span class="required">*</span> <span>Input 0 in case has no Credit loan</span>
-            </label>
-            <div class="input-wrapper">
-                <span class="input-prefix">$</span>
-                <input type="text" id="credit_loan" name="credit_loan" placeholder="Enter Credit loan amount" required />
-            </div>
+        <!--Question 4-->
+        <h4>Q4: Source of income</h4>
+        <p id="Q4Paragraph">
+          Do you or your spouse have a source of income to enable you to make a
+          monthly payment if we can help reduce your debt by 30-50%?
+        </p>
+        <label for="Q4">
+          This can include social security and disability benefits.  
+          <span class="required">*</span>
+        </label>
+        <div class="input-wrapper">
+          <span class="input-prefix">$</span>
+          <input
+            type="text"
+            id="source_income"
+            name="source_income"
+            placeholder="Enter source income amount"
+            required
+          />
+        </div>
 
-            <!--Question 2-->
-            <h4>Q2: Unsecured Loans</h4>
-            <p id="Q2Paragraph"></p>
-            <p>These are PERSONAL loans owed to a bank, and that are NOT backed by physical property like a CAR or a HOUSE. We also can’t help with student loans or medical bills. Just personal loans through a bank.</p>
-            <label for="Q2">
-                With that considered, how much would you say you owe on personal loans?
-                <span class="required">*</span> <span>Input 0 in case has no personal loan</span>
-            </label>
-            <div class="input-wrapper">
-                <span class="input-prefix">$</span>
-                <input type="text" id="unsecured_loan" name="unsecured_loan" placeholder="Enter unsecured loan amount" required />
-            </div>
+        <!-- Source Income Amount Qualification Message -->
+        <p id="SourceIncomeQualifiedMessage" class="source-income-qualified-message" style="color: green;"></p>
+        <p id="notSourceIncomeQualifiedMessage" class="not-source-income-qualified-message" style="color: red;"></p>
 
-            <!-- Question 3 -->
-            <h4>Q3:</h4>
-            <p id="Q3Paragraph">Let's make sure I got that right:</p>
-            <p id="Q3Output"></p>
+        <h4>Q5:</h4>
+        <label for="Q5">
+          Finally, are you currently enrolled in a debt relief program or an active bankruptcy?
+          <span class="required">*</span>
+        </label>
+        <div class="input-wrapper">
+          <select id="currently_enrolled" name="currently_enrolled" required>
+            <option value="">Select an option</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
 
-            <!-- Total Debt amount -->
-            <h4>Total Debt:</h4>
-            <p id="totalDebtOutput">Your TOTAL debt, including your credit card and personal loans is: $0</p>
+        <!-- Source Income Amount Qualification Message -->
+        <p id="isNotCurrentlyEnrolled" class="source-income-qualified-message" style="color: green;"></p>
+        <p id="isCurrentlyEnrolled" class="not-source-income-qualified-message" style="color: red;"></p>
 
-            <!-- Qualification Message -->
-            <p id="QualifiedMessage" class="qualified-message"></p>
-            <p id="notQualifiedMessage" class="not-qualified-message"></p>
+        <h4>Q6:</h4>
+        <p>Okay, it looks like we can help!  Let me just verify that I have the right name and location for you.</p>
 
-            <button type="submit">Submit</button>
-        </form>
+        <p id="q6info"></p> <br>
+
+
+        <h4>HAND OFF SCRIPT:</h4>
+        <p id="handOffMessage"></p>
+        
+        <button type="submit">Submit</button>
+      </form>
+
+      <!-- Modal -->
+      <div id="pleaseWaitModal" class="modal" style="display: none">
+        <div id="modalContent">
+          <div class="modal-header"><b>Please Wait</b></div>
+          <p id="modalMessage">
+            We are connecting your call. This will take just a moment.
+          </p>
+          <p>
+            <span><b>NOTE:</b></span> If you didn't hear call ringing please try submmiting
+            again.
+          </p>
+          <button
+            class="close-btn"
+            id="closeModalButton"
+            onclick="closeModal()"
+          >
+            Close
+          </button>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
